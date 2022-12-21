@@ -1,0 +1,11 @@
+{
+  "name": "beenzer-webserver",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "private",
+  "dependencies": {
+    "@solana/spl-token": "^0.3.6",
+    "@solana/web3.js": "^1.70.3",
+    "dotenv": "^16.0.3"
+  }
+}
