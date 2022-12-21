@@ -1,6 +1,11 @@
 # token authority account!!!
 beenzer-token-keypair.json
 
+# keys folder
+/key
+/keys
+/keypair
+
 # dotenv environment variables file
 .env
 .env.local
