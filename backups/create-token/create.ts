@@ -34,7 +34,6 @@ dotenv.config();
 
 const IMG_URI = 'https://arweave.net/IttS7dcmeUVsTeAvJgn5nLoK4yvYR_SadGoVK8oo_F4';
 const META_URI = 'https://arweave.net/EU_2usHag2T5fxY3eb_7TqfHs2Vk7Xd5JxB5DeRMB04';
-
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL as string;
 const SOLANA_CONNECTION = new Connection(SOLANA_RPC_URL as string);
 const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
