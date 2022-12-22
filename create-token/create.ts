@@ -50,7 +50,7 @@ const METAPLEX = Metaplex.make(SOLANA_CONNECTION)
 
 const MINT_CONFIG = {
   numDecimals: 2,
-  numberTokens: 1000000
+  numberTokens: 100
 }
 
 const TOKEN_METADATA: UploadMetadataInput = {
@@ -120,22 +120,22 @@ const createNewMintTransaction = async (connection:Connection, payer:Keypair, mi
       programId: TOKEN_PROGRAM_ID,
     }),
     createInitializeMintInstruction(
-      mintKeypair.publicKey, //Mint Address
-      MINT_CONFIG.numDecimals, //Number of Decimals of New mint
-      mintAuthority, //Mint Authority
-      freezeAuthority, //Freeze Authority
+      mintKeypair.publicKey, // Mint Address
+      MINT_CONFIG.numDecimals, // Number of Decimals of New mint
+      mintAuthority, // Mint Authority
+      freezeAuthority, // Freeze Authority
       TOKEN_PROGRAM_ID),
     createAssociatedTokenAccountInstruction(
-      payer.publicKey, //Payer 
-      tokenATA, //Associated token account 
-      payer.publicKey, //token owner
-      mintKeypair.publicKey, //Mint
+      payer.publicKey, // Payer 
+      tokenATA, // Associated token account 
+      payer.publicKey, // Token owner
+      mintKeypair.publicKey, // Mint
     ),
     createMintToInstruction(
-      mintKeypair.publicKey, //Mint
-      tokenATA, //Destination Token Account
-      mintAuthority, //Authority
-      MINT_CONFIG.numberTokens * Math.pow(10, MINT_CONFIG.numDecimals),//number of tokens
+      mintKeypair.publicKey, // Mint
+      tokenATA, // Destination Token Account
+      mintAuthority, // Authority
+      MINT_CONFIG.numberTokens * Math.pow(10, MINT_CONFIG.numDecimals), // number of tokens
     ),
     createCreateMetadataAccountV2Instruction({
       metadata: metadataPDA, 
