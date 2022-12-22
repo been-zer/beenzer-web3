@@ -26,7 +26,8 @@ import {
   DataV2, 
   createCreateMetadataAccountV2Instruction 
 } from '@metaplex-foundation/mpl-token-metadata';
-import secret from './keys/beenzer-token-keypair.json';
+import payer_secret from './keys/payer.json';
+import secret from './keys/mint.json';
 import dotenv from 'dotenv';
 import * as fs from 'fs';
 dotenv.config();
@@ -36,9 +37,9 @@ const META_URI = 'https://arweave.net/EU_2usHag2T5fxY3eb_7TqfHs2Vk7Xd5JxB5DeRMB0
 
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL as string;
 const SOLANA_CONNECTION = new Connection(SOLANA_RPC_URL as string);
+const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
 const WALLET = Keypair.fromSecretKey(new Uint8Array(secret));
 const IMAGE_PATH = process.env.IMAGE_PATH as string;
-
 const METAPLEX = Metaplex.make(SOLANA_CONNECTION)
   .use(keypairIdentity(WALLET))
   .use(bundlrStorage({
@@ -163,7 +164,7 @@ const main = async ( destinationWallet: PublicKey ) => {
   console.log(`---STEP 2: Creating Mint Transaction---`);
   const newMintTransaction: Transaction = await createNewMintTransaction(
     SOLANA_CONNECTION,
-    WALLET,
+    PAYER,
     WALLET,
     destinationWallet,
     WALLET.publicKey,
@@ -171,11 +172,11 @@ const main = async ( destinationWallet: PublicKey ) => {
   );
 
   console.log(`---STEP 3: Executing Mint Transaction---`);
-  const transactionId =  await SOLANA_CONNECTION.sendTransaction(newMintTransaction, [WALLET]);
+  const transactionId =  await SOLANA_CONNECTION.sendTransaction(newMintTransaction, [PAYER, WALLET]);
   console.log(`Transaction ID: `, transactionId);
   console.log(`Succesfully minted ${MINT_CONFIG.numberTokens} ${ON_CHAIN_METADATA.symbol} to ${WALLET.publicKey.toString()}.`);
-  console.log(`View Transaction: https://explorer.solana.com/tx/${transactionId}?cluster=devnet`);
-  console.log(`View Token Mint: https://explorer.solana.com/address/${WALLET.publicKey.toString()}?cluster=devnet`)
+  console.log(`View Transaction: https://explorer.solana.com/tx/${transactionId}?cluster=mainnet`);
+  console.log(`View Token Mint: https://explorer.solana.com/address/${WALLET.publicKey.toString()}?cluster=mainnet`)
 }
 
 main(new PublicKey('BctLWb6Q9viYjeJ2gNCr4xkRHc91NyikRR1TWn1qGGYr'));
