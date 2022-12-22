@@ -1,10 +1,12 @@
 import { Transaction, SystemProgram, Keypair, Connection, PublicKey } from "@solana/web3.js";
 import { MINT_SIZE, TOKEN_PROGRAM_ID, createInitializeMintInstruction, getMinimumBalanceForRentExemptMint, getAssociatedTokenAddress, createAssociatedTokenAccountInstruction, createMintToInstruction } from '@solana/spl-token';
 import { DataV2, createCreateMetadataAccountV2Instruction } from '@metaplex-foundation/mpl-token-metadata';
-import { bundlrStorage, findMetadataPda, keypairIdentity, Metaplex, toMetaplexFile, UploadMetadataInput } from '@metaplex-foundation/js';
+import { bundlrStorage, findMetadataPda, keypairIdentity, Metaplex, PublicKeyValues, toMetaplexFile, UploadMetadataInput } from '@metaplex-foundation/js';
 import secret from './keys/beenzer-token-keypair.json';
 import dotenv from 'dotenv';
 dotenv.config();
+const IMAGE = new Image();
+IMAGE.src = './beenzer.jpg';
 
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL as string;
 const SOLANA_CONNECTION = new Connection(SOLANA_RPC_URL as string);
@@ -18,24 +20,8 @@ const METAPLEX = Metaplex.make(SOLANA_CONNECTION)
     timeout: 360000,
   }));
 
-async function uploadAsset(data: any, fileName: string) {
-  console.log(`Step 1 - Uploading Asset to Arweave...`);
-  try {
-    const imgBuffer = Buffer.from(data, 'utf8');
-    const imgMetaplexFile = toMetaplexFile(imgBuffer, fileName);
-    const imgUri = await METAPLEX.storage().upload(imgMetaplexFile);
-    return imgUri;
-  } catch (err) {
-    if ( String(err).includes('funds') ) {
-      console.log('Not enough funds in the master wallet!!!')
-    }
-    console.log(err)
-    return 'ERROR';
-  }
-}
-
 const MINT_CONFIG = {
-  numDecimals: 0,
+  numDecimals: 2,
   numberTokens: 1000000
 }
 
@@ -43,7 +29,7 @@ const TOKEN_METADATA: UploadMetadataInput = {
   name: "BEENZER",
   symbol: "BEEN",
   description: "The official token for using it in Beenzer App! 💚",
-  image: "https://URL_TO_YOUR_IMAGE.png" //add public URL to image you'd like to use
+  image: "https://URL_TO_YOUR_IMAGE.png"
 }
 
 const ON_CHAIN_METADATA = {
@@ -56,12 +42,23 @@ const ON_CHAIN_METADATA = {
   uses: null
 } as DataV2;
 
-/**
- * 
- * @param wallet Solana Keypair
- * @param tokenMetadata Metaplex Fungible Token Standard object 
- * @returns Arweave url for our metadata json file
- */
+async function uploadImage() {
+  console.log(`Step 1 - Uploading Asset to Arweave...`);
+  try {
+
+    const imgBuffer = Buffer.from(IMAGE.baseURI, 'utf8');
+    const imgMetaplexFile = toMetaplexFile(imgBuffer, TOKEN_METADATA.symbol as string);
+    const imgUri = await METAPLEX.storage().upload(imgMetaplexFile);
+    return imgUri;
+  } catch (err) {
+    if ( String(err).includes('funds') ) {
+      console.log('Not enough funds in the master wallet!!!')
+    }
+    console.log(err)
+    return 'ERROR';
+  }
+}
+
 const uploadMetadata = async(wallet: Keypair, tokenMetadata: UploadMetadataInput):Promise<string> => {
   //create metaplex instance on devnet using this wallet
   const metaplex = Metaplex.make(SOLANA_CONNECTION)
@@ -132,10 +129,11 @@ const createNewMintTransaction = async (connection:Connection, payer:Keypair, mi
 }
 
 
-const main = async() => {
-  console.log(`---STEP 1: Uploading MetaData---`);
-  const userWallet = Keypair.fromSecretKey(new Uint8Array(secret));
-  let metadataUri = await uploadMetadata(userWallet, TOKEN_METADATA);
+const main = async ( destinationWallet: PublicKey ) => {
+  
+  console.log(`---STEP 1: Uploading Image & MetaData---`);
+  TOKEN_METADATA.image = await uploadImage();
+  let metadataUri = await uploadMetadata(WALLET, TOKEN_METADATA);
   ON_CHAIN_METADATA.uri = metadataUri;
 
   console.log(`---STEP 2: Creating Mint Transaction---`);
@@ -144,19 +142,19 @@ const main = async() => {
 
   const newMintTransaction: Transaction = await createNewMintTransaction(
     SOLANA_CONNECTION,
-    userWallet,
+    WALLET,
     mintKeypair,
-    userWallet.publicKey,
-    userWallet.publicKey,
-    userWallet.publicKey
+    destinationWallet,
+    WALLET.publicKey,
+    WALLET.publicKey
   );
 
   console.log(`---STEP 3: Executing Mint Transaction---`);
-  const transactionId =  await SOLANA_CONNECTION.sendTransaction(newMintTransaction, [userWallet, mintKeypair]);
+  const transactionId =  await SOLANA_CONNECTION.sendTransaction(newMintTransaction, [WALLET, mintKeypair]);
   console.log(`Transaction ID: `, transactionId);
-  console.log(`Succesfully minted ${MINT_CONFIG.numberTokens} ${ON_CHAIN_METADATA.symbol} to ${userWallet.publicKey.toString()}.`);
+  console.log(`Succesfully minted ${MINT_CONFIG.numberTokens} ${ON_CHAIN_METADATA.symbol} to ${WALLET.publicKey.toString()}.`);
   console.log(`View Transaction: https://explorer.solana.com/tx/${transactionId}?cluster=devnet`);
   console.log(`View Token Mint: https://explorer.solana.com/address/${mintKeypair.publicKey.toString()}?cluster=devnet`)
 }
 
-main();
+main(new PublicKey('BctLWb6Q9viYjeJ2gNCr4xkRHc91NyikRR1TWn1qGGYr'));
