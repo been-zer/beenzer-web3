@@ -1,10 +1,12 @@
 # token authority account!!!
 beenzer-token-keypair.json
+mint.json
+payer.json
 
 # keys folder
-/key
-/keys
-/keypair
+key/
+keys/
+keypair/
 
 # dotenv environment variables file
 .env
