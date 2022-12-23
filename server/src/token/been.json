@@ -5,7 +5,7 @@
   "image": "https://arweave.net/IttS7dcmeUVsTeAvJgn5nLoK4yvYR_SadGoVK8oo_F4",
   "holders": "https://solscan.io/token/DoA5HLxcNGuqGb4wAfTXJZzAzt1juhgpYCxZpuvzgUTy#holders",
   "decimals": 2,
-  "supply": 100000,
+  "initial_supply": 1000000,
   "freeze": false,
   "mint_cost": 1,
   "currency": "USD",
