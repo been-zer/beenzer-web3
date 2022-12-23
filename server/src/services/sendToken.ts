@@ -17,8 +17,8 @@ dotenv.config();
 
 export const sendToken = async (_pubkey: string, _amount: number = 1) => {
 
-  const signTransaction = 'processed';
   const decimals = 2;
+  const signTransaction = 'processed';
   const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
   const SOLANA_RPC_URL: string = process.env.SOLANA_RPC_URL as string;
   const SOLANA_CONNECTION: Connection = new Connection(
@@ -73,3 +73,5 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
 };
 
 sendToken('EBNtV9qAddZ3AP5xJMVKcZkcyDeSLmc78Yity3gSVZ5M', 5 );
+
+// v 1.0
