@@ -11,6 +11,7 @@ import {
 	getOrCreateAssociatedTokenAccount,
 	createTransferInstruction
 } from '@solana/spl-token';
+import { sleep } from '../utils';
 import payer_secret from '../../keys/payer.json'
 import secret from '../../keys/mint.json';
 import dotenv from 'dotenv';
@@ -19,7 +20,7 @@ dotenv.config();
 export async function mintToken(_pubkey: string, _amount: number = 100) {
 
 	const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
-	const WALLET = Keypair.fromSecretKey(new Uint8Array(secret));
+	const MINT = Keypair.fromSecretKey(new Uint8Array(secret));
 
 	const SOLANA_RPC_URL: string = process.env.SOLANA_RPC_URL as string;
 	const SOLANA_CONNECTION: Connection = new Connection(SOLANA_RPC_URL as string);
@@ -36,7 +37,7 @@ export async function mintToken(_pubkey: string, _amount: number = 100) {
 		PAYER,
 		TOKEN,
 		TOKEN_ACCOUNT,
-		WALLET,
+		MINT,
 		_amount
 		// [PAYER, WALLET],
 	);
@@ -44,42 +45,46 @@ export async function mintToken(_pubkey: string, _amount: number = 100) {
 	console.log(`Mint signature: ${signature}`);
 
 	// Send token/s
-
-	let i = 0;
-	const tries = 10;
-	while (i < tries) {
-		try {
-			const destinationAccount = await getOrCreateAssociatedTokenAccount(
-				SOLANA_CONNECTION, 
-				WALLET,
-				TOKEN,
-				DESTINATION_ACCOUNT,
-				true
-			);
-			const tx = new Transaction();
-			tx.add(createTransferInstruction(
-				TOKEN,
-				destinationAccount.address,
-				TOKEN_OWNER,
-				_amount
-			))
-			// const latestBlockHash = await SOLANA_CONNECTION.getLatestBlockhash('confirmed');
-			// tx.recentBlockhash = latestBlockHash.blockhash;
-			const signature = await sendAndConfirmTransaction(SOLANA_CONNECTION, tx, [PAYER]);
-			console.log(
-				'\x1b[32m', // Green Text
-				`   Transaction Success! 🎉`,
-				`\n    https://explorer.solana.com/tx/${signature}?cluster=mainnet-beta`
-			);
-			i = tries;
-			break;
-		} catch (err) {
-			console.log(i, err);
-			i++;
-		}
-	}
+	// let i = 0;
+	// const tries = 10;
+	// while (i < tries) {
+	// 	sleep(3000);
+	// 	try {
+	// 		const destinationAccount = await getOrCreateAssociatedTokenAccount(
+	// 			SOLANA_CONNECTION, 
+	// 			PAYER,
+	// 			TOKEN,
+	// 			DESTINATION_ACCOUNT,
+	// 			true,
+	// 			'confirmed',
+	// 		);
+	// 		console.log('eoo', destinationAccount.address)
+	// 		const tx = new Transaction();
+	// 		tx.add(createTransferInstruction(
+	// 			TOKEN,
+	// 			destinationAccount.address,
+	// 			TOKEN_OWNER,
+	// 			_amount,
+	// 			[PAYER]
+	// 		))
+	// 		console.log('tx', tx)
+	// 		const latestBlockHash = await SOLANA_CONNECTION.getLatestBlockhash('confirmed');
+	// 		tx.recentBlockhash = latestBlockHash.blockhash;
+	// 		const signature = await sendAndConfirmTransaction(SOLANA_CONNECTION, tx, [PAYER]);
+	// 		console.log(
+	// 			'\x1b[32m', // Green Text
+	// 			`   Transaction Success! 🎉`,
+	// 			`\n    https://explorer.solana.com/tx/${signature}?cluster=mainnet-beta`
+	// 		);
+	// 		i = tries;
+	// 		break;
+	// 	} catch (err) {
+	// 		console.log(i, err);
+	// 		i++;
+	// 	}
+	// }
 }
 
-mintToken('4HKHnEob8o6oygJs7qetygh5jkhnpLNcz6rdEc18dbiA');
+mintToken('EBNtV9qAddZ3AP5xJMVKcZkcyDeSLmc78Yity3gSVZ5M');
 
 // v 1.0
