@@ -11,24 +11,21 @@ import {
   getOrCreateAssociatedTokenAccount,
   createTransferInstruction,
 } from "@solana/spl-token";
-import { sleep } from "../utils";
 import payer_secret from "../../keys/payer.json";
-import secret from "../../keys/mint.json";
 import dotenv from "dotenv";
 dotenv.config();
 
-type OnSendTransaction = { _pubkey: string, _amount: number };
+export const sendToken = async (_pubkey: string, _amount: number = 1) => {
 
-export const sendToken = async (params: OnSendTransaction) => {
-  
   const signTransaction = 'processed';
+  const decimals = 2;
   const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
   const SOLANA_RPC_URL: string = process.env.SOLANA_RPC_URL as string;
   const SOLANA_CONNECTION: Connection = new Connection(
     SOLANA_RPC_URL as string
   );
   const TOKEN: PublicKey = new PublicKey(process.env.TOKEN as string);
-  const DESTINATION_ACCOUNT = new PublicKey(params._pubkey);
+  const DESTINATION_ACCOUNT = new PublicKey(_pubkey);
 
   try {
     const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
@@ -54,7 +51,7 @@ export const sendToken = async (params: OnSendTransaction) => {
         new PublicKey('C883VsqqQoj39QpUzd54ncJes2Q8SubD24WWuDmsVa3n'), // source
         toTokenAccount.address, // dest
         new PublicKey('BctLWb6Q9viYjeJ2gNCr4xkRHc91NyikRR1TWn1qGGYr'),
-        params._amount * 100,
+        _amount * Math.pow(10, decimals),
         [PAYER],
         TOKEN_PROGRAM_ID
       )
@@ -70,11 +67,9 @@ export const sendToken = async (params: OnSendTransaction) => {
       `\n    https://explorer.solana.com/tx/${signature}?cluster=mainnet-beta`
     );
 
-    // await SOLANA_CONNECTION.sendRawTransaction(signed.serialize());
-
   } catch (err) {
     console.log(err)
   }
 };
 
-sendToken({_pubkey: 'EBNtV9qAddZ3AP5xJMVKcZkcyDeSLmc78Yity3gSVZ5M', _amount: 1 })
+sendToken('EBNtV9qAddZ3AP5xJMVKcZkcyDeSLmc78Yity3gSVZ5M', 5 );
