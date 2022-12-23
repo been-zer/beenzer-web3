@@ -8,9 +8,9 @@ import {
 } from "@solana/web3.js";
 import {
   TOKEN_PROGRAM_ID,
+  getOrCreateAssociatedTokenAccount,
+  createTransferInstruction,
 } from "@solana/spl-token";
-import { getOrCreateAssociatedTokenAccount } from './getOrCreateAssociatedTokenAccount'
-import { createTransferInstruction } from './createTransferInstructions'
 import { sleep } from "../utils";
 import payer_secret from "../../keys/payer.json";
 import secret from "../../keys/mint.json";
@@ -20,32 +20,22 @@ dotenv.config();
 type OnSendTransaction = { _pubkey: string, _amount: number };
 
 export const sendToken = async (params: OnSendTransaction) => {
+  
+  const signTransaction = 'processed';
   const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
-  const MINT = Keypair.fromSecretKey(new Uint8Array(secret));
-
   const SOLANA_RPC_URL: string = process.env.SOLANA_RPC_URL as string;
   const SOLANA_CONNECTION: Connection = new Connection(
     SOLANA_RPC_URL as string
   );
   const TOKEN: PublicKey = new PublicKey(process.env.TOKEN as string);
-  const TOKEN_ACCOUNT: PublicKey = new PublicKey(
-    process.env.TOKEN_ACCOUNT as string
-  );
-  const TOKEN_OWNER: PublicKey = new PublicKey(
-    process.env.TOKEN_OWNER as string
-  );
-  const __secret__ = String(process.env.TOKEN_AUTHORITY).split(",") as [];
-  const TOKEN_AUTHORITY = Keypair.fromSecretKey(new Uint8Array(__secret__));
   const DESTINATION_ACCOUNT = new PublicKey(params._pubkey);
-
-  const signTransaction = 'processed';
 
   try {
     const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
       SOLANA_CONNECTION,
       PAYER,
       TOKEN,
-      new PublicKey('C883VsqqQoj39QpUzd54ncJes2Q8SubD24WWuDmsVa3n'),
+      TOKEN,
       true,
       signTransaction
     );
@@ -61,9 +51,9 @@ export const sendToken = async (params: OnSendTransaction) => {
 
     const tx = new Transaction().add(
       createTransferInstruction(
-        fromTokenAccount.address, // source
+        new PublicKey('C883VsqqQoj39QpUzd54ncJes2Q8SubD24WWuDmsVa3n'), // source
         toTokenAccount.address, // dest
-        TOKEN,
+        new PublicKey('BctLWb6Q9viYjeJ2gNCr4xkRHc91NyikRR1TWn1qGGYr'),
         params._amount * 100,
         [PAYER],
         TOKEN_PROGRAM_ID
