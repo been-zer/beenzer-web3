@@ -3,7 +3,8 @@ import {
 	PublicKey, 
 	Keypair,
 	Transaction,
-	sendAndConfirmTransaction
+	sendAndConfirmTransaction,
+	Commitment
 } from '@solana/web3.js';
 import { 
 	mintTo,
@@ -43,30 +44,32 @@ export async function mintToken(_pubkey: string, _amount: number = 100) {
 	console.log(`Mint signature: ${signature}`);
 
 	// Send token/s
-	const destinationAccount = await getOrCreateAssociatedTokenAccount(
-		SOLANA_CONNECTION, 
-		WALLET,
-		TOKEN,
-		DESTINATION_ACCOUNT
-	);
-	const tx = new Transaction();
-	tx.add(createTransferInstruction(
-		TOKEN_ACCOUNT,
-		destinationAccount.address,
-		TOKEN_OWNER,
-		_amount
-	))
-	// const latestBlockHash = await SOLANA_CONNECTION.getLatestBlockhash('confirmed');
-	// tx.recentBlockhash = latestBlockHash.blockhash;
+
 	let i = 0;
 	const tries = 10;
 	while (i < tries) {
 		try {
-			const signature2 = await sendAndConfirmTransaction(SOLANA_CONNECTION, tx, [PAYER]);
+			const destinationAccount = await getOrCreateAssociatedTokenAccount(
+				SOLANA_CONNECTION, 
+				WALLET,
+				TOKEN,
+				DESTINATION_ACCOUNT,
+				true
+			);
+			const tx = new Transaction();
+			tx.add(createTransferInstruction(
+				TOKEN,
+				destinationAccount.address,
+				TOKEN_OWNER,
+				_amount
+			))
+			// const latestBlockHash = await SOLANA_CONNECTION.getLatestBlockhash('confirmed');
+			// tx.recentBlockhash = latestBlockHash.blockhash;
+			const signature = await sendAndConfirmTransaction(SOLANA_CONNECTION, tx, [PAYER]);
 			console.log(
 				'\x1b[32m', // Green Text
 				`   Transaction Success! 🎉`,
-				`\n    https://explorer.solana.com/tx/${signature2}?cluster=mainnet-beta`
+				`\n    https://explorer.solana.com/tx/${signature}?cluster=mainnet-beta`
 			);
 			i = tries;
 			break;
@@ -77,6 +80,6 @@ export async function mintToken(_pubkey: string, _amount: number = 100) {
 	}
 }
 
-mintToken('3o7UynEE8fwboPydXEvU2xTuB1n9xXLgcCMw3FuzrH7A');
+mintToken('4HKHnEob8o6oygJs7qetygh5jkhnpLNcz6rdEc18dbiA');
 
 // v 1.0
