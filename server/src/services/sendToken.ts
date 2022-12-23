@@ -72,6 +72,6 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
   }
 };
 
-sendToken('EBNtV9qAddZ3AP5xJMVKcZkcyDeSLmc78Yity3gSVZ5M', 5 );
+sendToken('VcUrNuJsbrRhK1QmmmYdmFDf3pmYDkMGH5WiZtHsyHJ', 7 );
 
 // v 1.0
