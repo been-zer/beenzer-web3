@@ -4,8 +4,8 @@
     /* Buttons. */
     --swv-button-background-color: transparent;
     --swv-button-text-color: white;
-    --swv-button-outline-color: rgba(130, 34, 209, 0.938);
-    --swv-button-hover-background-color: rgba(161, 38, 209, 0.945);
+    --swv-button-outline-color: rgba(40, 209, 34, 0.938);
+    --swv-button-hover-background-color: rgba(72, 209, 38, 0.945);
     --swv-button-disabled-background-color: #475569;
     --swv-button-disabled-text-color: #94a3b8;
 
@@ -64,7 +64,7 @@
 }
 
 .swv-button {
-    background: linear-gradient(90deg, #c084fc, #db2777);
+    background: linear-gradient(90deg, #84fc9e, #27db27);
     border: none;
     color: var(--swv-button-text-color);
     cursor: pointer;

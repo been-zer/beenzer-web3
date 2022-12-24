@@ -5,8 +5,8 @@
 
       <!-- Logo -->
       <a :href="landing_url" target="_blank" class="sm:mr-8">
-        <button class="rounded-full h-10 flex justify-center items-center">
-          <img class="h-12 -mt-2" src="../assets/logo.png" alt="Workcation">
+        <button class="h-10 flex justify-center items-center">
+          <img class="h-12 -mt-2 rounded-full" src="../assets/logo.png" alt="Workcation">
         </button>
       </a>
       
@@ -14,7 +14,7 @@
       <div class="flex items-center justify-center">
         <wallet-multi-button :dark="this.$store.state.dark"></wallet-multi-button>
         <a href="https://solfaucet.com" target="_blank" >
-          <p v-if="balance" class="ml-4 pr-4 text-sm font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600" >{{balance}} SOL</p>
+          <p v-if="balance" class="ml-4 pr-4 text-sm font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600" >{{balance}} SOL</p>
           <p v-if="balance" class="ml-4 pr-4 text-xs font-semibold uppercase text-gray-400" >DevNet</p>
         </a>
       </div>

@@ -3,7 +3,6 @@
     <div class="h-screen w-screen m-0 -mb-12" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <NavbarWallet :users="users" :balance="balance" :time="time" />
       <div class="flex flex-wrap top-24 left-0 right-0" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
-        <PotPanel :date="date" :countdown="countdown" :potSOL="potSOL" :potUSD="potUSD" :tickets="tickets" :nVerified="nVerified" :nPlayers="nPlayers" :wallet="user_wallet" />
         <PlayPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
         <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
       </div>
@@ -34,7 +33,6 @@
 
 <script>
 import NavbarWallet from './components/NavbarWallet.vue';
-import PotPanel from './components/PotPanel.vue';
 import PlayPanel from './components/PlayPanel.vue';
 import HistoryPanel from './components/HistoryPanel.vue';
 import { ref, watchEffect } from 'vue';
@@ -56,10 +54,8 @@ export default {
   name: 'App',
   components: {
     NavbarWallet,
-    PotPanel,
     PlayPanel,
     HistoryPanel,
-    
     // CommitModal
   },
   data() {
