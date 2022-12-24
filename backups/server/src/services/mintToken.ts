@@ -6,8 +6,8 @@ import {
 import { 
 	mintTo,
 } from '@solana/spl-token';
-import payer_secret from '../keys/payer.json'
-import secret from '../keys/mint.json';
+import payer_secret from '../../keys/payer.json'
+import secret from '../../keys/mint.json';
 import dotenv from 'dotenv';
 dotenv.config();
 
