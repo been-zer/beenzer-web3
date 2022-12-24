@@ -11,13 +11,14 @@ import {
   getOrCreateAssociatedTokenAccount,
   createTransferInstruction,
 } from "@solana/spl-token";
-import payer_secret from "../../keys/payer.json";
+import payer_secret from "../keys/payer.json";
 import dotenv from "dotenv";
 dotenv.config();
 
 export const sendToken = async (_pubkey: string, _amount: number = 1) => {
 
   const decimals = 2;
+  const amount = _amount * Math.pow(10, decimals);
   const signTransaction = 'processed';
   const PAYER = Keypair.fromSecretKey(new Uint8Array(payer_secret));
   const SOLANA_RPC_URL: string = process.env.SOLANA_RPC_URL as string;
@@ -45,7 +46,7 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
         TOKEN_ACCOUNT, // source
         toTokenAccount.address, // dest
         TOKEN_OWNER,
-        _amount * Math.pow(10, decimals),
+        amount,
         [PAYER],
         TOKEN_PROGRAM_ID
       )
@@ -57,7 +58,7 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
     const signature = await sendAndConfirmTransaction(SOLANA_CONNECTION, tx, [PAYER]);
     console.log(
       '\x1b[32m', // Green Text
-      `   Transaction Success! 🎉`,
+      `   Transaction Success! 🎉  Sent ${_amount} BEEN to ${_pubkey}`,
       `\n    https://explorer.solana.com/tx/${signature}?cluster=mainnet-beta`
     );
 
@@ -66,6 +67,6 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
   }
 };
 
-sendToken('7XLhyceYjGEX56c1vMbhobNKpQ7muAEaExbP9SEMypfr', 12 );
+sendToken('Cws6sP5xHJcR5yVk2NvQvnoNWEr8FW87riN4ibgA93LB', 1 );
 
 // v 1.0
