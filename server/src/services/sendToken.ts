@@ -25,17 +25,11 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
     SOLANA_RPC_URL as string
   );
   const TOKEN: PublicKey = new PublicKey(process.env.TOKEN as string);
+  const TOKEN_ACCOUNT: PublicKey = new PublicKey(process.env.TOKEN_ACCOUNT as string);
+  const TOKEN_OWNER: PublicKey = new PublicKey(process.env.TOKEN_OWNER as string);
   const DESTINATION_ACCOUNT = new PublicKey(_pubkey);
 
   try {
-    const fromTokenAccount = await getOrCreateAssociatedTokenAccount(
-      SOLANA_CONNECTION,
-      PAYER,
-      TOKEN,
-      TOKEN,
-      true,
-      signTransaction
-    );
 
     const toTokenAccount = await getOrCreateAssociatedTokenAccount(
       SOLANA_CONNECTION,
@@ -48,9 +42,9 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
 
     const tx = new Transaction().add(
       createTransferInstruction(
-        new PublicKey('C883VsqqQoj39QpUzd54ncJes2Q8SubD24WWuDmsVa3n'), // source
+        TOKEN_ACCOUNT, // source
         toTokenAccount.address, // dest
-        new PublicKey('BctLWb6Q9viYjeJ2gNCr4xkRHc91NyikRR1TWn1qGGYr'),
+        TOKEN_OWNER,
         _amount * Math.pow(10, decimals),
         [PAYER],
         TOKEN_PROGRAM_ID
@@ -72,6 +66,6 @@ export const sendToken = async (_pubkey: string, _amount: number = 1) => {
   }
 };
 
-sendToken('9Ng6S57ZgnWoaZcjsBHq8Z5NasDvo94xEkZjbKxtDMQ8', 1 );
+sendToken('Bg39YHUrjkDr15rb4iZf7BhYuW9ssXJPHxwntwrKQU6N', 1 );
 
 // v 1.0
