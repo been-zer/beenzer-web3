@@ -4,11 +4,14 @@
     <div class="flex items-center justify-between px-4 py-3 sm:p-0">
 
       <!-- Logo -->
-      <a :href="landing_url" target="_blank" class="sm:mr-8">
+      <!-- <a :href="landing_url" target="_blank" class="sm:mr-8">
         <button class="h-10 flex justify-center items-center">
           <img class="h-12 -mt-2 rounded-full" src="../assets/logo.png" alt="Workcation">
         </button>
-      </a>
+      </a> -->
+      <div class="font-bold sm:text-2xl text-lg sm:pr-12 pr-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+        <h1><a href="index.html"><span>Beenzer</span></a></h1>
+      </div>
       
       <!-- Wallet Connect -->
       <div class="flex items-center justify-center">
@@ -38,13 +41,13 @@
 
         <!-- Twitter Button -->
         <a :href="twitter_url" target="_blank">
-          <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-white hover:bg-gray-200 text-gray-600'" @mouseover="twitter_img=twitter_gif" @mouseleave="twitter_img=require('../assets/ico/twitter.svg')">
+          <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl shadow-green-600" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-white hover:bg-gray-200 text-gray-600'" @mouseover="twitter_img=twitter_gif" @mouseleave="twitter_img=require('../assets/ico/twitter.svg')">
             <img :src="twitter_img" class="h-6 w-6"/>
           </button>
         </a>
         <!-- Discord Button -->
         <a :href="discord_url" target="_blank">
-          <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-white hover:bg-gray-200 text-gray-600'" @mouseover="discord_img=discord_gif" @mouseleave="discord_img=require('../assets/ico/discord.png')">
+          <button class="rounded-full h-10 w-10 m-2 flex justify-center items-center shadow-xl shadow-green-600" :class="this.$store.state.dark ? 'bg-white/10 shadow-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-white hover:bg-gray-200 text-gray-600'" @mouseover="discord_img=discord_gif" @mouseleave="discord_img=require('../assets/ico/discord.png')">
             <img :src="discord_img" class="h-7 w-7"/>
           </button>
         </a>

@@ -71,7 +71,7 @@ export default defineComponent({
       labels: ['11-07', '11-08', '11-09', '11-10', '11-11', '11-12', '11-13', '11-14'], // props.chartData,
       datasets: [{
         label: false,
-        backgroundColor: '#c084fc',
+        backgroundColor: '#16a34a',
         data: props.chartData
       }]
     };
@@ -93,13 +93,13 @@ export default defineComponent({
       plugins: {
         legend: {
           display: false,
-          fontColor: '#4B5563',
+          fontColor: '#16a34a',
         },
         area: {
           display: true,
         },
         text: {
-          color: '#4B5563',
+          color: '#16a34a',
         }
      }
     }

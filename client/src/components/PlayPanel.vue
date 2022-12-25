@@ -15,9 +15,8 @@
         <div class="py-4 text-center uppercase text-sm tracking-widest font-semibold justify-center">
 
           <div class="pl-2 pt-6">
-            LAUNCHING
             <p class="uppercase text-xl tracking-widest text-gray-400 font-semibold">
-              PRESALE 🎉
+              PRESALE 🎉 FINISHES
             </p>
             <p class="uppercase text-3xl tracking-widestfont-semibold">
               JAN  1  2023 
@@ -75,7 +74,7 @@
       <div>
 
         <div class="uppercase text-s tracking-widest text-gray-400 font-semibold text-center mb-4 -mt-2">
-          Pick your number
+          Pick your amount
         </div>
 
         <div class="font-bold text-4xl text-center p-7 rounded-xl mx-2 cursor-pointer"
@@ -103,7 +102,7 @@
           <button @click="clickNum(9)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400' : 'bg-gray-50 hover:bg-gray-200'" class="py-6 px-2 rounded-br-xl align-middle relative">9</button>
           <button @click="resetNum()"  :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400' : 'bg-gray-50 hover:bg-gray-200'" class="py-3 px-2 rounded-3xl m-3 align-middle relative">↻</button>
           <button @click="clickNum(0)" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400' : 'bg-gray-50 hover:bg-gray-200'" class="py-6 px-2 rounded-b-xl align-middle relative">0</button>
-          <button @click="deleteNum()" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400' : 'bg-gray-50 hover:bg-gray-200'" class="py-3 px-2 rounded-3xl m-3 align-middle relative">🚀</button>          
+          <button @click="deleteNum()" :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-400' : 'bg-gray-50 hover:bg-gray-200'" class="py-3 px-2 rounded-3xl m-3 align-middle relative text-green-600">🚀</button>          
         <div/>
 
       </div>
