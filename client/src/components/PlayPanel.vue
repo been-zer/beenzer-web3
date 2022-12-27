@@ -292,12 +292,14 @@ export default {
 
       if (BEEN.value[0] === '0') {
         BEEN.value = String(n);
-        USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
         BEENZ.value = BEEN.value * 4;
+        USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
         SOL.value = Math.floor((BEEN.value / 14)*100)/100;
         return
       }
       if ( BEEN.value+n <= maxNumber ) {
+        BEEN.value += n;
+        BEENZ.value = BEEN.value * 4;
         if ( BEEN.value+n > 100000) {
           SOL.value = Math.floor((BEEN.value / 14));
           USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100));
@@ -305,8 +307,6 @@ export default {
           SOL.value = Math.floor((BEEN.value / 14)*100)/100;
           USD.value = Math.floor((BEEN.value * (100-DISCOUNT)/100)*100)/100;
         }
-        BEEN.value += n;
-        BEENZ.value = BEEN.value * 4;
         return
       }
       else
