@@ -83,14 +83,15 @@
           Pick your amount
         </div> -->
 
-        <div class="font-bold text-4xl text-center p-7 rounded-xl mx-4 cursor-pointer border"
-        :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'"
+        <div class="font-bold text-4xl text-center p-7 rounded-xl mx-4 cursor-pointer border border-green-600"
+        :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
         @click="$emit('commit', BEEN)"
         @mouseover="commitHover=true"
         @mouseleave="commitHover=false">
           <div class="text-2xl py-1 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-600" v-if="commitHover">
             <a class="text-xl mr-5 ">
-              MINT ⛏️ </a>
+              ⛏️ MINT 
+            </a>
             {{ nf.format(BEEN).replaceAll(',', ' ') }}
             <a class="text-2xl ml-4">
               BEEN </a>
@@ -189,14 +190,15 @@
           Pick your amount
         </div> -->
 
-        <div class="font-bold text-4xl text-center p-7 rounded-xl mx-4 cursor-pointer border"
-        :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600 border-gray-500' : 'bg-gray-50 hover:bg-gray-200 border-gray-100'"
+        <div class="font-bold text-4xl text-center p-7 rounded-xl mx-4 cursor-pointer border border-red-600"
+        :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
         @click="$emit('commit', BEEN)"
         @mouseover="commitHover=true"
         @mouseleave="commitHover=false">
-          <div class="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600" v-if="commitHover">
+          <div class="text-2xl py-1 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600" v-if="commitHover">
             <a class="text-xl mr-5">
-              BURN 🔥 </a>
+              🔥 BURN 
+            </a>
             {{ nf.format(BEEN).replaceAll(',', ' ') }}
             <a class="text-2xl ml-4 ">
               BEEN </a>
