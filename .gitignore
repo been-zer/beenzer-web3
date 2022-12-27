@@ -8,6 +8,10 @@ key/
 keys/
 keypair/
 
+# builds
+dist/
+build/
+
 # dotenv environment variables file
 .env
 .env.local
