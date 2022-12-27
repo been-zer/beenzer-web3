@@ -112,7 +112,7 @@
 
 <script>
 // import LineChart from './charts/lineChart.ts';
-import { shortWallet, markWallet } from './utils';
+import { shortWallet, markWallet } from '../utils';
 
 export default {
   props: [
