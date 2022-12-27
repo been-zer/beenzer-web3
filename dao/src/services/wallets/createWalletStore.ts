@@ -2,8 +2,6 @@ import {
   WalletReadyState,
   WalletNotReadyError,
   WalletNotConnectedError,
-} from "@solana/wallet-adapter-base";
-import {
   Adapter,
   MessageSignerWalletAdapterProps,
   SignerWalletAdapterProps,
