@@ -35,10 +35,9 @@
           </div>
         </div>
 
+        <!-- Amounts boxes -->
         <div class="py-4 text-center uppercase tracking-widest font-semibold justify-center border-1 rounded-xl -my-3">
-          
           <div class="grid grid-cols-4 grid-flow-row align-center justify-center mb-4 px-4 text-center">
-
             <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">SOL</p>
               <div class="flex justify-center" >
@@ -47,7 +46,6 @@
                 > -{{ nf.format(SOL).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
             <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">USD</p>
               <div class="flex justify-center" >
@@ -56,7 +54,6 @@
                 > -{{ nf.format(USD).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
             <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEEN</p>
               <div class="flex justify-center" >
@@ -65,7 +62,6 @@
                 > +{{ nf.format(BEEN).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
             <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZ</p>
               <div class="flex justify-center" >
@@ -74,7 +70,6 @@
                 > +{{ nf.format(BEENZ).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
           </div>
         </div>
 
@@ -142,49 +137,43 @@
           </div>
         </div>
 
-        <div class="text-center uppercase tracking-widest font-semibold justify-center border-1 rounded-xl -my-3">
-          
+        <!-- Amounts boxes -->
+        <div class="py-4 text-center uppercase tracking-widest font-semibold justify-center border-1 rounded-xl -my-3">
           <div class="grid grid-cols-4 grid-flow-row align-center justify-center mb-4 px-4 text-center">
-
-            <div class="p-4 text-center">
+            <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">SOL</p>
               <div class="flex justify-center" >
-                <p class="font-bold text-xl mt-2"
+                <p class="font-bold text-md mt-2"
                   :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-                > +{{ `${SOL}`}}</p>
+                > +{{ nf.format(SOL).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
-            <div class="p-4 text-center">
+            <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">USD</p>
               <div class="flex justify-center" >
-                <p class="lowercase font-bold text-xl mt-2"
+                <p class="lowercase font-bold text-md mt-2"
                   :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-                > +{{ `${USD}`}}</p>
+                > +{{ nf.format(USD).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
-            <div class="p-4 text-center">
+            <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEEN</p>
               <div class="flex justify-center" >
-                <p class="font-bold text-xl mt-2"
+                <p class="lowercase font-bold text-md mt-2"
                   :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-                > -{{ `${1}`}}</p>
+                > -{{ nf.format(BEEN).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
-            <div class="p-4 text-center">
+            <div class="text-center">
               <p class="uppercase text-md tracking-widest text-gray-400 font-semibold">BEENZ</p>
               <div class="flex justify-center" >
-                <p class="font-bold text-xl mt-2"
+                <p class="font-bold text-md mt-2"
                   :class="this.$store.state.dark ? 'text-gray-300' : 'text-gray-600'"
-                > -{{ `${4}`}}</p>
+                > -{{ nf.format(BEENZ).replaceAll(',', ' ') }}</p>
               </div>
             </div>
-
           </div>
         </div>
-
 
         <!-- <div class="uppercase text-s tracking-widest text-gray-400 font-semibold text-center mb-4 -mt-2">
           Pick your amount
