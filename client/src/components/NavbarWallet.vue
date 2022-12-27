@@ -9,7 +9,7 @@
           <img class="h-12 -mt-2 rounded-full" src="../assets/logo.png" alt="Workcation">
         </button>
       </a> -->
-      <div class="font-bold sm:text-2xl text-lg sm:pr-12 pr-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600">
+      <div class="font-bold sm:text-4xl text-lg sm:pr-12 pr-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
         <h1><a href="index.html"><span>Beenzer</span></a></h1>
       </div>
       
@@ -18,17 +18,17 @@
         <wallet-multi-button :dark="this.$store.state.dark"></wallet-multi-button>
         <a href="https://solfaucet.com" target="_blank" >
           <p v-if="balance" class="ml-4 pr-4 text-sm font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600" >{{balance}} SOL</p>
-          <p v-if="balance" class="ml-4 pr-4 text-xs font-semibold uppercase text-gray-400" >DevNet</p>
+          <p v-if="balance" class="ml-4 pr-4 text-sm font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-600" >{{3}} BEEN</p>
         </a>
       </div>
        
       <!-- Toogle nav -->
       <div class="sm:hidden">
         <button @click="isOpen = !isOpen" type="button" :class="this.$store.state.dark ? 'text-gray-200' : 'text-gray-500'" class="block text-gray-500">
-          <svg v-if="!isOpen" class="h-6 w-6 fill-current" viewBox="0 0 24 24" >
+          <svg v-if="!isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
             <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
           </svg>
-          <svg v-if="isOpen" class="h-6 w-6 fill-current" viewBox="0 0 24 24" >
+          <svg v-if="isOpen" class="h-6 w-6 fill-current text-green-600" viewBox="0 0 24 24" >
             <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
           </svg>
         </button>

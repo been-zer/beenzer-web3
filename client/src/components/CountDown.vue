@@ -8,18 +8,22 @@
 
 <script>
   import CountDown from '@chenfengyuan/vue-countdown';
-  
-  const expires = new Date(Date.UTC(2023, 0, 1));
-  const now = new Date().getTime();
-  const time = expires.getTime()-now; 
 
   export default ({
-    props: ['_date'],
     components: {
       CountDown
     },
-    setup() { 
-      return { 
+    props: [
+      'target_date'
+    ],
+    data() { 
+      console.log('eooooooooooooo', this.date)
+      const _date = this.target_date.split('/');
+      const expires = new Date(Date.UTC(_date[0], _date[1], _date[2]));
+      const now = new Date().getTime();
+      const time = expires.getTime()-now; 
+
+      return {
         time 
       } 
     } 

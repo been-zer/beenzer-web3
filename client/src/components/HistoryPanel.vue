@@ -1,8 +1,8 @@
 <template>
   <!-- Right Panel -->
 
-  <div class="m-auto w-full max-w-7xl p-4">
-    <div class="p-4 text-gray-600 rounded-xl text-center shadow-xl h-screen" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
+  <div class="m-auto w-full max-w-md p-2 mt-0">
+    <div class="h-[840px] p-4 text-gray-600 rounded-xl text-center shadow-xl shadow-yellow-400" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
 
       <div class="uppercase text-sm tracking-widest text-gray-400 font-semibold mt-8">SOLotto</div>
       <div class="uppercase text-3xl tracking-widest text-gray-400 font-semibold">History</div>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="flex flex-wrap" >
-        <div class="w-1/2 h-full">
+        <div class="w-full h-full">
           <div class="uppercase text-xs mb-4 mt-4 tracking-widest text-gray-400 font-semibold">
             HOLDERS DISTRIBUTION
           </div>

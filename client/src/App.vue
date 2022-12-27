@@ -5,6 +5,8 @@
       <div class="flex flex-wrap top-24 left-0 right-0" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
         <PlayPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
         <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
+        <PlayPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
+          <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
       </div>
       <div class="p-4 pt-8 text-center text-xs text-gray-400" :class="this.$store.state.dark ? 'bg-gray-900' : 'bg-gray-100'" > 
         <div class="flex justify-center items-center rounded-xl m-4">
@@ -377,10 +379,11 @@ html {
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
+  background-color: rgba(179, 179, 179, 0.692);
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(184, 184, 184, 0.692);
+  background-color: rgba(179, 179, 179, 0.692);
   border-radius: 0.75rem;
   margin: 0.4rem;
   border-left: 1px solid rgba(211, 211, 211, 0);
@@ -388,8 +391,8 @@ html {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background:  linear-gradient(30deg, #d31bb47c, #ae0ce05d);
-  box-shadow: inset 0 0 6px #c41bd3,
+  background:  linear-gradient(30deg, #1bd3247c, #21b913be);
+  box-shadow: inset 0 0 6px #30d31b,
 }
 </style>
 
