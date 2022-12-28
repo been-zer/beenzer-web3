@@ -7,7 +7,7 @@
     <div class="min-h-[840px] rounded-xl pt-2 pb-4" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
       <div class="flex justify-center px-4 text-center mt-10">
         <div class="text-xl px-4">⛏️</div>
-          <switcher @checkbox="(checkbox) => checkBox(checkbox)" class="pt-1 pl-1" ></switcher>
+          <MintSwitcher @checkbox="(checkbox) => checkBox(checkbox)" class="pt-1 pl-1" />
         <div class="text-xl px-4">🔥</div>
       </div>
 
@@ -229,13 +229,13 @@ import { ref } from 'vue';
 import click_sound from '../assets/sounds/beep.mp3';
 import CountDown from './CountDown';
 import store from '@/store';
-import Switcher from './SwitcherButton.vue';
+import MintSwitcher from './MintSwitcher.vue';
 
 
 export default {
   components: {
     CountDown,
-    Switcher,
+    MintSwitcher,
   },
   props: [
     'potSOL',

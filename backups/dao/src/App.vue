@@ -29,12 +29,16 @@
         Made with 💓 by Solucky Games © All rights reserved. <br>Built in <a href="https://solana.com/" target="_blank" class="underline">Solana</a> in 2022. Good luck all!
       </div>
     </div>
-    <CommitModal />
+    <div class="hidden">
+      <WelcomeModal :location="location.flag"/>
+    <!-- <SingUpModal /> -->
+    </div>
   </div>
 </template>
 
 <script>
-import CommitModal from "./components/CommitModal.vue";
+import WelcomeModal from "./components/WelcomeModal.vue";
+// import SingUpModal from "./components/SingUpModal.vue";
 import NavbarWallet from './components/NavbarWallet.vue';
 import MintPanel from './components/MintPanel.vue';
 import GovernPanel from './components/GovernPanel.vue';
@@ -54,7 +58,6 @@ const preflightCommitment = 'processed'
 const cluster = 'devnet'
 const commitSOL = 1;
 
-
 export default {
   name: 'App',
   components: {
@@ -63,7 +66,8 @@ export default {
     HistoryPanel,
     GovernPanel,
     VotingPanel,
-    CommitModal
+    WelcomeModal,
+    // SingUpModal
   },
   data() {
 
@@ -369,7 +373,7 @@ export default {
       commitNumber,
       yourNumbers,
       yourProbability,
-      yourROI
+      yourROI,
     }
   }
 }

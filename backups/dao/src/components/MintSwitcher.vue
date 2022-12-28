@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  el: 'Switcher',
+  el: 'MintSwitcher',
   data() {
     return {
       checkbox: true
@@ -23,12 +23,12 @@ export default {
 }
 </script>
 
-<style>
+<style scope="true">
 .switch {
   position: relative;
   display: inline-block;
-  width: 52px;
-  height: 25px;
+  width: 48px;
+  height: 23px;
 }
 
 .switch input {
@@ -50,10 +50,9 @@ export default {
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
+  height: 22px;
+  width: 22px;
+  margin-left: -24px;
   background-color: rgb(255, 255, 255);
   -webkit-transition: 0.4s;
   transition: 0.4s;
