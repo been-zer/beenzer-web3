@@ -15,8 +15,7 @@ export default {
   },
   methods: {
     toggleCheckbox() {
-      this.checkbox = !this.checkbox
-      this.$emit('checkbox', this.checkbox)
+      this.$emit('location', '🏴‍☠️')
     }
   }
 
@@ -28,7 +27,7 @@ export default {
   position: relative;
   display: inline-block;
   width: 52px;
-  height: 10px;
+  height: 22px;
 }
 
 .switch input {
@@ -50,10 +49,8 @@ export default {
 .slider:before {
   position: absolute;
   content: "";
-  height: 28px;
-  width: 28px;
-  left: 4px;
-  top: 1px;
+  height: 22px;
+  width: 22px;
   align-items: middle;
   background-color: rgb(255, 255, 255);
   -webkit-transition: 0.4s;
@@ -61,7 +58,7 @@ export default {
 }
 
 input:checked + .slider {
-  background-color: #1b1b1b8c;
+  background-color: #5e5e5e8c;
 }
 
 input:focus + .slider {

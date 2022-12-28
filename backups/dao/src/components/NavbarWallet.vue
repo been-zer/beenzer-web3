@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { WalletMultiButton } from 'solana-wallets-vue'
+import { WalletMultiButton } from 'solana-wallets-vue';
 
 export default {
   props: [

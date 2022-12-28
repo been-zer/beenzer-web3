@@ -2,35 +2,16 @@
   <div :class="this.$store.state.dark ? 'bg-gray-900' : 'bg-gray-100'">
     <div class="h-screen w-screen m-0 -mb-12" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <NavbarWallet :users="users" :balance="balance" :time="time" />
-      <div class="flex flex-wrap top-24 left-0 right-0" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
+      <div class="flex flex-wrap top-24 left-0 right-0 justify-center align-center text-center" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
         <MintPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
         <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
-        <GovernPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
+        <GovernPanel />
         <VotingPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
-      </div>
-      <div class="p-4 pt-8 text-center text-xs text-gray-400" :class="this.$store.state.dark ? 'bg-gray-900' : 'bg-gray-100'" > 
-        <div class="flex justify-center items-center rounded-xl m-4">
-          <!-- Server time -->
-          <div class="text-center text-md tracking-widest font-semibold justify-center mr-8 text-gray-400">
-            {{ time }}<span class="text-xs"> UTC</span>
-          </div>
-          <!-- Users connected -->
-          <div class="text-center text-md tracking-widest font-semibold justify-center mr-8 text-gray-400">
-            <span class="text-xs">
-              CONNECTED: 
-            </span>
-            {{ users }}
-          </div>
-          <!-- Users flag -->
-          <div class="text-center text-md tracking-widest font-semibold justify-center mr-8 text-gray-400">
-            {{ location.flag }}
-          </div>
-        </div>
-        Made with 💓 by Solucky Games © All rights reserved. <br>Built in <a href="https://solana.com/" target="_blank" class="underline">Solana</a> in 2022. Good luck all!
+        <FooterBar class="mt-12" :flag="location.flag" :time="time" :users="users"/>
       </div>
     </div>
     <div class="hidden">
-      <WelcomeModal :location="location.flag"/>
+      <WelcomeModal :flag="location.flag" :time="time" :users="users"/>
     <!-- <SingUpModal /> -->
     </div>
   </div>
@@ -39,6 +20,7 @@
 <script>
 import WelcomeModal from "./components/WelcomeModal.vue";
 // import SingUpModal from "./components/SingUpModal.vue";
+import FooterBar from './components/FooterBar.vue';
 import NavbarWallet from './components/NavbarWallet.vue';
 import MintPanel from './components/MintPanel.vue';
 import GovernPanel from './components/GovernPanel.vue';
@@ -66,6 +48,7 @@ export default {
     HistoryPanel,
     GovernPanel,
     VotingPanel,
+    FooterBar,
     WelcomeModal,
     // SingUpModal
   },
@@ -210,6 +193,7 @@ export default {
         console.log(payload);
         ip.value = payload.ip
         flag.value = payload.location.country.flag.emoji;
+        this.$store.dispatch('setFlag', flag.value)
         country.value =  payload.location.country.code;
         city.value =  payload.location.city;
       });

@@ -4,6 +4,7 @@ export default new Vuex.Store({
   state: {
     dark: true,
     sound: true,
+    flag: '🏴‍☠️'
   },
   getters: {
 
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     soundButton () {
       this.state.sound = !this.state.sound;
+    },
+    setFlag (flag) {
+      this.state.flag = flag;
     }
   }
 })
