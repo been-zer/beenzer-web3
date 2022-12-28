@@ -9,10 +9,13 @@ import {
   WalletError,
   WalletName,
 } from "@solana/wallet-adapter-base";
-import { PublicKey } from "@solana/web3.js";
+import { 
+  PublicKey, 
+  Transaction 
+} from "@solana/web3.js";
 import { useLocalStorage } from "@vueuse/core";
 import { Ref } from "vue";
-import { computed, ref, shallowRef, watch, watchEffect } from "vue";
+import { computed, ref, shallowRef, watchEffect } from "vue";
 import { WalletNotSelectedError } from "./errors";
 
 export type Wallet = {
@@ -222,7 +225,7 @@ export const createWalletStore = ({
 
   // Send a transaction using the provided connection.
   const sendTransaction: WalletAdapterProps["sendTransaction"] = async (
-    transaction,
+    transaction: Transaction,
     connection,
     options?
   ) => {

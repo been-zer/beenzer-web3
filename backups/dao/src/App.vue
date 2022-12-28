@@ -3,10 +3,10 @@
     <div class="h-screen w-screen m-0 -mb-12" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <NavbarWallet :users="users" :balance="balance" :time="time" />
       <div class="flex flex-wrap top-24 left-0 right-0" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
-        <PlayPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
+        <MintPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
         <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
-        <PlayPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
-          <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
+        <GovernPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
+        <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
       </div>
       <div class="p-4 pt-8 text-center text-xs text-gray-400" :class="this.$store.state.dark ? 'bg-gray-900' : 'bg-gray-100'" > 
         <div class="flex justify-center items-center rounded-xl m-4">
@@ -35,7 +35,8 @@
 
 <script>
 import NavbarWallet from './components/NavbarWallet.vue';
-import PlayPanel from './components/PlayPanel.vue';
+import MintPanel from './components/MintPanel.vue';
+import GovernPanel from './components/GovernPanel.vue';
 import HistoryPanel from './components/HistoryPanel.vue';
 import { ref, watchEffect } from 'vue';
 import { useAnchorWallet, useWallet } from 'solana-wallets-vue';
@@ -56,8 +57,9 @@ export default {
   name: 'App',
   components: {
     NavbarWallet,
-    PlayPanel,
+    MintPanel,
     HistoryPanel,
+    GovernPanel
     // CommitModal
   },
   data() {

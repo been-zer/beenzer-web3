@@ -4,7 +4,7 @@
   <div class="m-auto w-full max-w-md p-2 mt-0">
 
     <div class="rounded-xl shadow-xl" :class="this.checkbox ? 'shadow-green-600' : 'shadow-red-600'" >
-    <div class="h-[840px] rounded-xl pt-2 pb-2" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
+    <div class="min-h-[840px] rounded-xl pt-2 pb-4" :class="this.$store.state.dark ? 'bg-gray-800 shadow-gray-700' : 'bg-white'">
       <div class="flex justify-center px-4 text-center mt-10">
         <div class="text-xl px-4">⛏️</div>
           <switcher @checkbox="(checkbox) => checkBox(checkbox)" class="pt-1 pl-1" ></switcher>
@@ -175,9 +175,7 @@
           </div>
         </div>
 
-        <!-- <div class="uppercase text-s tracking-widest text-gray-400 font-semibold text-center mb-4 -mt-2">
-          Pick your amount
-        </div> -->
+
 
         <div class="font-bold text-4xl text-center p-7 rounded-xl mx-4 cursor-pointer border border-red-600"
         :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'"
@@ -228,7 +226,7 @@
 
 <script>
 import { ref } from 'vue';
-import click_sound from '../assets/sounds/click.mp3';
+import click_sound from '../assets/sounds/beep.mp3';
 import CountDown from './CountDown';
 import store from '@/store';
 import Switcher from './SwitcherButton.vue';

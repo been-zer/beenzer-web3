@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 
 export default new Vuex.Store({
   state: {
-    dark: false,
+    dark: true,
     sound: true,
   },
   getters: {
