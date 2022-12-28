@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div ref="modal-backdrop" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50 " :class="!this.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
+    <div ref="modal-backdrop" v-if="connected" class="fixed z-10 inset-0 overflow-y-auto bg-opacity-50 " :class="!this.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'">
       <img :src="fireworks" class="fixed z-1 mt-12 inset-0 m-auto opacity-30" />
       <div class="z-20 flex items-center justify-center min-h-screen text-center" >
         <div class="z-90 min-h-[900px] m-2 sm:w-1/3 rounded-lg text-center overflow-hidden p-8 flex flex-col justify-center shadow-xl shadow-yellow-800" :class="this.$store.state.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
@@ -8,7 +8,7 @@
             WELCOME TO
           </div>
           <p class="uppercase px-4 sm:px-14 mx-4 text-4xl sm:text-6xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
-            BEENZER'S
+            BEENZER DAO
           </p>
           <p class="uppercase px-4 sm:px-14 mt-6 text-2xl tracking-widest font-semibold text-gray-400" >
             DECENTRALIZED AUTONOMOUS ORGANIZATION (DAO) 
@@ -70,7 +70,8 @@ export default {
   props: [
     'flag',
     'time',
-    'users'
+    'users',
+    'connected'
   ],
   methods: [
 

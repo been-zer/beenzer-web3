@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="hidden">
-      <WelcomeModal :flag="location.flag" :time="time" :users="users"/>
+      <WelcomeModal :connected="connected" :flag="location.flag" :time="time" :users="users"/>
     <!-- <SingUpModal /> -->
     </div>
   </div>
@@ -207,15 +207,23 @@ export default {
     // User wallet
     const wallet = useAnchorWallet();
     const user_wallet = ref('');
+    const connected = ref(true);
     try {
       user_wallet.value = wallet.value.publicKey;
-    } catch { console.log('Wallet connection error')}
+      connected.value = false;
+    } catch { 
+      console.log('Wallet connection error')
+    }
     const connection = new Connection(process.env.VUE_APP_CLUSTER_URL, 'connected')
     const balance = ref();
     watchEffect(async () => {
-    try {
-      user_wallet.value = wallet.value.publicKey;
-    } catch { console.log('Wallet connection error')}
+      try {
+        user_wallet.value = wallet.value.publicKey;
+        connected.value = false;
+
+      } catch { 
+        console.log('Wallet connection error')
+      }
       const bal = await connection.getBalance(user_wallet.value)/1000000000;
       balance.value = Math.floor(bal*100)/100;
       setInterval( async () => {
@@ -358,6 +366,7 @@ export default {
       yourNumbers,
       yourProbability,
       yourROI,
+      connected
     }
   }
 }
