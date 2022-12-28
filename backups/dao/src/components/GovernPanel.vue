@@ -45,7 +45,7 @@
             <div class="inline-block align-middle uppercase p-4 text-lg tracking-widest text-gray-400 font-semibold">
               A.
             </div>
-            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-green-600 hover:bg-green-600"
+            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-gray-500 hover:bg-green-600 hover:border-yellow-500"
             :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'">
             👍 YES! MANY POTENTIAL USERS CAN BE FOUND THERE!          
             </div>
@@ -55,7 +55,7 @@
             <div class="uppercase p-4 text-lg tracking-widest text-gray-400 font-semibold text-center justify-center ">
               B.
             </div>
-            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-red-600 hover:bg-green-600"
+            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-gray-500 hover:bg-green-600 hover:border-yellow-500"
             :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'">
             👎 NO! INSTAGRAM IS EVIL! FUCK FACEBOOK! FUCK WEB2!
             </div>
@@ -65,7 +65,7 @@
             <div class="uppercase p-4 text-lg tracking-widest text-gray-400 font-semibold text-center justify-center ">
               C.
             </div>
-            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-green-600 hover:bg-green-600"
+            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-gray-500 hover:bg-green-600 hover:border-yellow-500"
             :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'">
             💯 WE SHOULD HAVE AN ACCOUNT IN EVERY SOCIAL MEDIA PLATFORM.
             </div>
@@ -75,7 +75,7 @@
             <div class="uppercase p-4 text-lg tracking-widest text-gray-400 font-semibold text-center justify-center ">
               D.
             </div>
-            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-red-600 hover:bg-green-600"
+            <div class="font-bold text-md text-center -ml-2 py-4 px-2 w-full rounded-xl mx-4 cursor-pointer border border-gray-500 hover:bg-green-600 hover:border-yellow-500"
             :class="this.$store.state.dark ? 'bg-gray-600 hover:bg-gray-600' : 'bg-gray-50 hover:bg-gray-200'">
             💀 WHO CARES! NOT AN IMPORTANT QUESTION... NEXT!
             </div>

@@ -9,7 +9,7 @@
           <img class="h-12 -mt-2 rounded-full" src="../assets/logo.png" alt="Workcation">
         </button>
       </a> -->
-      <div class="font-bold sm:text-4xl text-lg sm:pr-12 pr-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
+      <div class="font-bold sm:text-4xl text-lg sm:pr-8 sm:-ml-12 pr-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
         <h1><a href="index.html"><span>Beenzer</span></a></h1>
       </div>
       

@@ -6,7 +6,7 @@
         <MintPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
         <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
         <GovernPanel @commit="(number) => commitNumber(number)" v-on="newTicket" :balance="balance" :potSOL="potSOL" :tickets="tickets" :countdown="countdown" :yourNumbers="yourNumbers" :yourProbability="yourProbability" :yourROI="yourROI" />
-        <HistoryPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
+        <VotingPanel :history="history" :totalCountries="totalCountries" :totalPlayers="totalPlayers" :maxPot="maxPot" :avgPot="avgPot" :chartData="chartData" :chartLabels="chartLabels" :wallet="user_wallet" />
       </div>
       <div class="p-4 pt-8 text-center text-xs text-gray-400" :class="this.$store.state.dark ? 'bg-gray-900' : 'bg-gray-100'" > 
         <div class="flex justify-center items-center rounded-xl m-4">
@@ -29,14 +29,16 @@
         Made with 💓 by Solucky Games © All rights reserved. <br>Built in <a href="https://solana.com/" target="_blank" class="underline">Solana</a> in 2022. Good luck all!
       </div>
     </div>
-    <!-- <CommitModal class="invisible hidden"/> -->
+    <CommitModal />
   </div>
 </template>
 
 <script>
+import CommitModal from "./components/CommitModal.vue";
 import NavbarWallet from './components/NavbarWallet.vue';
 import MintPanel from './components/MintPanel.vue';
 import GovernPanel from './components/GovernPanel.vue';
+import VotingPanel from './components/VotingPanel.vue';
 import HistoryPanel from './components/HistoryPanel.vue';
 import { ref, watchEffect } from 'vue';
 import { useAnchorWallet, useWallet } from 'solana-wallets-vue';
@@ -59,8 +61,9 @@ export default {
     NavbarWallet,
     MintPanel,
     HistoryPanel,
-    GovernPanel
-    // CommitModal
+    GovernPanel,
+    VotingPanel,
+    CommitModal
   },
   data() {
 
