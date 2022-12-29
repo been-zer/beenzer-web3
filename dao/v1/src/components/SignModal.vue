@@ -4,18 +4,13 @@
       <div class="z-20 flex items-center justify-center min-h-screen text-center" >
         <div class="z-90 min-h-[900px] m-2 sm:w-1/3 rounded-lg text-center overflow-hidden shadow-xl p-8 flex flex-col justify-center" :class="this.dark ? 'bg-gray-900 text-gray-100' : 'bg-gray-100 text-gray-700'" >
           
-          <p class="uppercase px-14 text-4xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
-            CONNECT YOUR WALLET TO LOGIN
-          </p>
-          <div class="my-10 flex align-center justify-center">
-            <wallet-multi-button :dark="this.$store.state.dark"/>
-          </div>
+
           <p class="mt-2 px-8 uppercase text-2xl tracking-widest font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-400">
-            BEENZER'S DECENTRALIZED AUTONOMOUS ORGANIZATION  <a class="text-4xl pointer" to="https://en.wikipedia.org/wiki/Decentralized_autonomous_organization">(DAO)</a>
+            SIGN UP TO BEENZER  
           </p>
-          <p class="mt-10 text-2xl tracking-widest text-gray-400 font-semibold">
+          <input class="mt-10 text-2xl tracking-widest text-gray-400 font-semibold"/>
             FROM HERE YOU CAN:
-          </p>
+ 
           <p class="mt-10 text-2xl tracking-widest text-gray-400 font-semibold">
             1️⃣ MINT $BEEN ⛏️
           </p>
@@ -58,12 +53,12 @@
 
 // Play with the built in methods
 // import fireworks from '../assets/fireworks.gif'
-import { WalletMultiButton } from 'solana-wallets-vue'
+// import { WalletMultiButton } from 'solana-wallets-vue'
 
 
 export default {
   components: {
-    WalletMultiButton
+    // WalletMultiButton
   },
   props: {
     

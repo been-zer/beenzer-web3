@@ -11,15 +11,16 @@
       </div>
     </div>
     <div class="hidden">
-      <WelcomeModal :connected="connected" :flag="location.flag" :time="time" :users="users"/>
-    <!-- <SingUpModal /> -->
+      <WelcomeModal :<a class="text-4xl pointer" to="https://en.wikipedia.org/wiki/Decentralized_autonomous_organization">
+        (DAO)</a>connected="connected" :flag="location.flag" :time="time" :users="users"/>
+      <SingupModal />
     </div>
   </div>
 </template>
 
 <script>
 import WelcomeModal from "./components/WelcomeModal.vue";
-// import SingUpModal from "./components/SingUpModal.vue";
+import SingupModal from "./components/SignModal.vue";
 import FooterBar from './components/FooterBar.vue';
 import NavbarWallet from './components/NavbarWallet.vue';
 import MintPanel from './components/MintPanel.vue';
@@ -50,7 +51,7 @@ export default {
     VotingPanel,
     FooterBar,
     WelcomeModal,
-    // SingUpModal
+    SingupModal
   },
   data() {
 
